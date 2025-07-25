@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Counter from './Counter';
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  const handleReset = () => {
+    setCount('0'); // 🔴 Bug: Passing string instead of number
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>React Debugging Example</h1>
+      <Counter count={count} onIncrement={() => setCount(count + 1)} />
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 }
